@@ -12,7 +12,9 @@
             "name": "M1-NhiềuCâuHỏi.py",
             "snippets": [
                 "M1-snippet1.py",
-                "M1-snippet2.py"
+                "M1-snippet2.py",
+                "M1-snippet3.py",
+                "M1-snippet4.py"
             ],
             "subtitle": "Lưu trữ nhiều câu hỏi và sử dụng đối tượng để lưu câu hỏi"
         }

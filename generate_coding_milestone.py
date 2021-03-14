@@ -66,6 +66,8 @@ def transform(sources, diff, snippet_file):
     sources[(end_idx+1):(end_idx+1)] = snippet[4:]
     sources[begin_idx:(end_idx+1)] = []
 
+    begin_idx = get_match_index([x[0] for x in diff], begin_match)
+    end_idx = get_match_index([x[0] for x in diff], end_match)
     diff[(end_idx+1):(end_idx+1)] = [(x, LineStatus.add) for x in snippet[4:]]
     diff[begin_idx:(end_idx+1)] = [(l[0], LineStatus.delete) for l in diff[begin_idx:(end_idx+1)]]
 
