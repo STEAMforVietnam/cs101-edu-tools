@@ -1,24 +1,98 @@
+from enum import Enum   
+
 import json
 import os
 
+class LineStatus(Enum):
+    same = "same"
+    add = "add"
+    delete = "delete"
+
+def file_to_lines(filename):
+    with open(filename) as f:
+        return f.readlines() 
+
 def file_to_string(filename):
     with open(filename) as f:
-        return f.read() 
+        return f.read()         
 
-def string_to_file(filename, s):
+def lines_to_file(filename, lines):
     with open(filename, 'w') as f:
-        f.write(s)
+        for line in lines:
+            f.write(line)
 
-def generate_milestone(folder, milestone):
+def diff_lines_to_file(base_html, filename, lines):    
+    prev_line_status = None
+    with open(filename, 'w') as f:
+        f.write(base_html)
+        for line in lines:
+            line_status = line[1]
+            if line_status != prev_line_status:
+                if prev_line_status != None:
+                    f.write("</code></pre>\n")
+                f.write("<pre><code class='python code_%s'>\n" % line_status.value)
+            f.write(line[0])
+            prev_line_status = line_status
+        f.write("</code></pre>\n")            
+            
+
+def get_match_condition(match_comment):
+    return match_comment[1:].strip()
+
+def get_match_index(lines, match_condition):
+    if match_condition == "":
+        return -1
+    idx = 0
+    for line in lines:
+        if line.startswith(match_condition):
+            return idx
+        idx += 1
+    return idx
+
+def transform(sources, diff, snippet_file):
+    snippet = file_to_lines(snippet_file)
+    assert(snippet[0].startswith("# BEGINMATCH"))
+    begin_match = get_match_condition(snippet[1])
+    assert(snippet[2].startswith("# ENDMATCH"))
+    end_match = get_match_condition(snippet[3])
+    
+    begin_idx = get_match_index(sources, begin_match)
+    end_idx = get_match_index(sources, end_match)
+    #print(begin_idx)
+    #print(end_idx)
+    sources[(end_idx+1):(end_idx+1)] = snippet[4:]
+    sources[begin_idx:(end_idx+1)] = []
+
+    diff[(end_idx+1):(end_idx+1)] = [(x, LineStatus.add) for x in snippet[4:]]
+    diff[begin_idx:(end_idx+1)] = [(l[0], LineStatus.delete) for l in diff[begin_idx:(end_idx+1)]]
+
+    return (sources, diff)
+
+def generate_milestone(folder, prev_dest, milestone):
     if not os.path.exists(folder):
         os.makedirs(folder)
-    source = folder + "-Sources/" + milestone['source']
-    source_file = file_to_string(source)
+    source_folder = folder + "-Sources"        
+    if 'source' in milestone:
+        source = source_folder + "/" + milestone['source']
+    else:
+        source = prev_dest
+    source = file_to_lines(source)
+    diff = [(x, LineStatus.same) for x in source]
     dest_file = folder + "/" + milestone['name']
-    string_to_file(dest_file, source_file)
+    diff_dest_file = folder + "/" + milestone['name'].replace(".py", "_diff.html")
+
+    if 'snippets' in milestone:
+        for snippet in milestone['snippets']:
+            (source, diff) = transform(source, diff, source_folder + "/" + snippet)
+    lines_to_file(dest_file, source)
+    diff_lines_to_file(file_to_string(source_folder + "/base_diff.html"), diff_dest_file, diff)
+    return dest_file
 
 with open('config.json') as f:
     config = json.load(f)
 
+prev_dest = None
 for milestone in config['milestones']:
-    generate_milestone(config['folder'], milestone)
+    print("Generate milestone for", milestone['name'])
+    dest_file = generate_milestone(config['folder'], prev_dest, milestone)
+    prev_dest = dest_file

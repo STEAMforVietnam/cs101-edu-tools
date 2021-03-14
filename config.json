@@ -4,8 +4,15 @@
     "milestones":
     [
         {
-            "name": "M0-OneQuiz.py",
+            "name": "M0-MộtCâuHỏi.py",
             "source": "original.py"
+        },
+        {
+            "name": "M1-NhiềuCâuHỏi.py",
+            "snippets": [
+                "M1-snippet1.py",
+                "M1-snippet2.py"
+            ]
         }
     ]
 }
