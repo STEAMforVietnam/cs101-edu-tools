@@ -17,6 +17,16 @@
                 "M1-snippet4.py"
             ],
             "subtitle": "Lưu trữ nhiều câu hỏi và sử dụng đối tượng để lưu câu hỏi"
+        },
+        {
+            "name": "M2-TổChứcChươngTrình.py",
+            "snippets": [
+                "M2-snippet1.py",
+                "M2-snippet2.py",
+                "M2-snippet3.py",
+                "M2-snippet4.py"
+            ],
+            "subtitle": "Tổ chức lại chương trình thành các hàm làm các công việc cụ thể"
         }
     ],
     "files_to_copy": [

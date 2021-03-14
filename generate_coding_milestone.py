@@ -47,7 +47,7 @@ def get_match_index(lines, match_condition):
         return -1
     idx = 0
     for line in lines:
-        if line.startswith(match_condition):
+        if line.strip().startswith(match_condition):
             return idx
         idx += 1
     return idx
@@ -63,13 +63,19 @@ def transform(sources, diff, snippet_file):
     end_idx = get_match_index(sources, end_match)
     #print(begin_idx)
     #print(end_idx)
+    if begin_idx >= len(sources):
+        sources.append("")
     sources[(end_idx+1):(end_idx+1)] = snippet[4:]
     sources[begin_idx:(end_idx+1)] = []
 
     begin_idx = get_match_index([x[0] for x in diff], begin_match)
     end_idx = get_match_index([x[0] for x in diff], end_match)
-    diff[(end_idx+1):(end_idx+1)] = [(x, LineStatus.add) for x in snippet[4:]]
-    diff[begin_idx:(end_idx+1)] = [(l[0], LineStatus.delete) for l in diff[begin_idx:(end_idx+1)]]
+    if begin_idx >= len(diff):
+        diff.append(("", LineStatus.add))
+        diff[(end_idx+1):(end_idx+1)] = [(x, LineStatus.add) for x in snippet[4:]]
+    else:
+        diff[(end_idx+1):(end_idx+1)] = [(x, LineStatus.add) for x in snippet[4:]]
+        diff[begin_idx:(end_idx+1)] = [(l[0], LineStatus.delete) for l in diff[begin_idx:(end_idx+1)]]
 
     return (sources, diff)
 
@@ -88,7 +94,9 @@ def generate_milestone(folder, prev_dest, milestone, diff_title):
 
     if 'snippets' in milestone:
         for snippet in milestone['snippets']:
-            (source, diff) = transform(source, diff, source_folder + "/" + snippet)
+            snippet_file = source_folder + "/" + snippet
+            if os.path.exists(snippet_file):
+                (source, diff) = transform(source, diff, snippet_file)
     lines_to_file(dest_file, source)
     diff_lines_to_file(file_to_string(source_folder + "/base_diff.html"), diff_title, milestone['subtitle'], milestone['name'], diff_dest_file, diff)    
     return dest_file
