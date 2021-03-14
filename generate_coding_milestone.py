@@ -1,4 +1,5 @@
 from enum import Enum   
+from shutil import copyfile
 
 import json
 import os
@@ -21,10 +22,12 @@ def lines_to_file(filename, lines):
         for line in lines:
             f.write(line)
 
-def diff_lines_to_file(base_html, filename, lines):    
+def diff_lines_to_file(base_html, diff_title, subtitle, milestone_name, filename, lines):    
     prev_line_status = None
     with open(filename, 'w') as f:
         f.write(base_html)
+        f.write(("<h2>" + diff_title + "</h2>") % milestone_name)
+        f.write("<h3>" + subtitle + "</h3>")
         for line in lines:
             line_status = line[1]
             if line_status != prev_line_status:
@@ -68,7 +71,7 @@ def transform(sources, diff, snippet_file):
 
     return (sources, diff)
 
-def generate_milestone(folder, prev_dest, milestone):
+def generate_milestone(folder, prev_dest, milestone, diff_title):
     if not os.path.exists(folder):
         os.makedirs(folder)
     source_folder = folder + "-Sources"        
@@ -85,7 +88,7 @@ def generate_milestone(folder, prev_dest, milestone):
         for snippet in milestone['snippets']:
             (source, diff) = transform(source, diff, source_folder + "/" + snippet)
     lines_to_file(dest_file, source)
-    diff_lines_to_file(file_to_string(source_folder + "/base_diff.html"), diff_dest_file, diff)
+    diff_lines_to_file(file_to_string(source_folder + "/base_diff.html"), diff_title, milestone['subtitle'], milestone['name'], diff_dest_file, diff)    
     return dest_file
 
 with open('config.json') as f:
@@ -94,5 +97,10 @@ with open('config.json') as f:
 prev_dest = None
 for milestone in config['milestones']:
     print("Generate milestone for", milestone['name'])
-    dest_file = generate_milestone(config['folder'], prev_dest, milestone)
+    dest_file = generate_milestone(config['folder'], prev_dest, milestone, config['diff_title'])
     prev_dest = dest_file
+for file in config['files_to_copy']:
+    folder = config['folder']
+    source_folder = folder + "-Sources"
+    copyfile(source_folder + "/" + file, folder + "/" + file)
+    print("Copy file", file)

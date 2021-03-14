@@ -5,14 +5,21 @@
     [
         {
             "name": "M0-MộtCâuHỏi.py",
-            "source": "original.py"
+            "source": "original.py",
+            "subtitle": ""
         },
         {
             "name": "M1-NhiềuCâuHỏi.py",
             "snippets": [
                 "M1-snippet1.py",
                 "M1-snippet2.py"
-            ]
+            ],
+            "subtitle": "Lưu trữ nhiều câu hỏi và sử dụng đối tượng để lưu câu hỏi"
         }
-    ]
+    ],
+    "files_to_copy": [
+        "code_add.jpeg",
+        "code_delete.jpeg"
+    ],
+    "diff_title": "CS101 - Bài Học Final Project - Cột mốc %s"    
 }
