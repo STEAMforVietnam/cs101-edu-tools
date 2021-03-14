@@ -1,0 +1,11 @@
+{
+    "name": "CS101-FinalLesson",
+    "folder": "CS101-FinalLesson",
+    "milestones":
+    [
+        {
+            "name": "M0-OneQuiz.py",
+            "source": "original.py"
+        }
+    ]
+}
