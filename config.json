@@ -47,6 +47,16 @@
                 "M3b-snippet4.py"
             ],
             "subtitle": "Sử dụng hàm random.shuffle để xáo trộn câu hỏi ngẫu nhiên"
+        },
+        {
+            "name": "M4-TínhĐiểm.py",
+            "snippets": [
+                "M4-snippet1.py",
+                "M4-snippet2.py",
+                "M4-snippet3.py",
+                "M4-snippet4.py"
+            ],
+            "subtitle": "Lưu điểm số cho trò chơi và cộng điểm khi trả lời đúng"
         }
     ],
     "files_to_copy": [
