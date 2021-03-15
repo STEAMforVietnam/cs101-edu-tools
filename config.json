@@ -37,6 +37,16 @@
                 "M3a-snippet4.py"
             ],
             "subtitle": "Sử dụng vòng lặp để hỏi nhiều câu hỏi cho trò chơi"
+        },
+        {
+            "name": "M3B-HỏiNhiềuCâuHỏiNgẫuNhiên.py",
+            "snippets": [
+                "M3b-snippet1.py",
+                "M3b-snippet2.py",
+                "M3b-snippet3.py",
+                "M3b-snippet4.py"
+            ],
+            "subtitle": "Sử dụng hàm random.shuffle để xáo trộn câu hỏi ngẫu nhiên"
         }
     ],
     "files_to_copy": [

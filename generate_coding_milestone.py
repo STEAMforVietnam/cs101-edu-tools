@@ -25,7 +25,7 @@ def lines_to_file(filename, lines):
 
 def diff_lines_to_file(base_html, diff_title, subtitle, milestone_name, filename, lines):    
     prev_line_status = None
-    with open(filename, 'w') as f:
+    with open(filename, 'w', encoding='utf-8') as f:
         f.write(base_html)
         f.write(("<h2>" + diff_title + "</h2>") % milestone_name)
         f.write("<h3>" + subtitle + "</h3>")
@@ -102,7 +102,7 @@ def generate_milestone(folder, prev_dest, milestone, diff_title):
     diff_lines_to_file(file_to_string(source_folder + "/base_diff.html"), diff_title, milestone['subtitle'], milestone['name'], diff_dest_file, diff)    
     return dest_file
 
-with open('config.json') as f:
+with open('cs101-edu-tools/config.json') as f:
     config = json.load(f)
 
 prev_dest = None
