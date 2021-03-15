@@ -57,11 +57,50 @@
                 "M4-snippet4.py"
             ],
             "subtitle": "Lưu điểm số cho trò chơi và cộng điểm khi trả lời đúng"
+        },
+        {
+            "name": "M5-ĐọcDữLiệuTừFile.py",
+            "snippets": [
+                "M5-snippet1.py"
+            ],
+            "subtitle": "Đọc dữ liệu câu hỏi và đáp án từ Files."
+        },
+        {
+            "name": "M6-CâuTínhNhẩmSiêuTríTuệ.py",
+            "snippets": [
+                "M6-snippet1.py",
+                "M6-snippet2.py"
+            ],
+            "subtitle": "Sinh ra các câu hỏi Tính Nhẩm Siêu Trí Tuệ Ngẫu Nhiên."
+        },
+        {
+            "name": "M7-TínhThờiGianTrảLời.py",
+            "snippets": [
+                "M7-snippet1.py",
+                "M7-snippet2.py",
+                "M7-snippet3.py",
+                "M7-snippet4.py",
+                "M7-snippet5.py",
+                "M7-snippet6.py"
+            ],
+            "subtitle": "Tính thời gian trả lời và cho điểm thưởng nếu trả lời nhanh."
         }
     ],
     "files_to_copy": [
         "code_add.jpeg",
-        "code_delete.jpeg"
+        "code_delete.jpeg",
+        "q1.txt",
+        "a1.txt",
+        "q2.txt",
+        "a2.txt",
+        "q3.txt",
+        "a3.txt",
+        "q4.txt",
+        "a4.txt",
+        "q5.txt",
+        "a5.txt",
+        "q6.txt",
+        "a6.txt"
     ],
     "diff_title": "CS101 - Bài Học Final Project - Cột mốc %s"    
 }
