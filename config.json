@@ -9,7 +9,7 @@
             "subtitle": ""
         },
         {
-            "name": "M1-NhiềuCâuHỏi.py",
+            "name": "M1-LưuNhiềuCâuHỏi.py",
             "snippets": [
                 "M1-snippet1.py",
                 "M1-snippet2.py",
@@ -27,6 +27,16 @@
                 "M2-snippet4.py"
             ],
             "subtitle": "Tổ chức lại chương trình thành các hàm làm các công việc cụ thể"
+        },
+        {
+            "name": "M3A-HỏiNhiềuCâuHỏi.py",
+            "snippets": [
+                "M3a-snippet1.py",
+                "M3a-snippet2.py",
+                "M3a-snippet3.py",
+                "M3a-snippet4.py"
+            ],
+            "subtitle": "Sử dụng vòng lặp để hỏi nhiều câu hỏi cho trò chơi"
         }
     ],
     "files_to_copy": [

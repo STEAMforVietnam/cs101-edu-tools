@@ -1,5 +1,6 @@
 from enum import Enum   
 from shutil import copyfile
+from shutil import rmtree
 
 import json
 import os
@@ -60,7 +61,7 @@ def transform(sources, diff, snippet_file):
     end_match = get_match_condition(snippet[3])
     
     begin_idx = get_match_index(sources, begin_match)
-    end_idx = get_match_index(sources, end_match)
+    end_idx = begin_idx - 1 if end_match == "INSERT" else get_match_index(sources, end_match)
     #print(begin_idx)
     #print(end_idx)
     if begin_idx >= len(sources):
@@ -69,7 +70,7 @@ def transform(sources, diff, snippet_file):
     sources[begin_idx:(end_idx+1)] = []
 
     begin_idx = get_match_index([x[0] for x in diff], begin_match)
-    end_idx = get_match_index([x[0] for x in diff], end_match)
+    end_idx = begin_idx - 1 if end_match == "INSERT" else get_match_index([x[0] for x in diff], end_match)
     if begin_idx >= len(diff):
         diff.append(("", LineStatus.add))
         diff[(end_idx+1):(end_idx+1)] = [(x, LineStatus.add) for x in snippet[4:]]
@@ -105,6 +106,7 @@ with open('config.json') as f:
     config = json.load(f)
 
 prev_dest = None
+rmtree(config['folder'])
 for milestone in config['milestones']:
     print("Generate milestone for", milestone['name'])
     dest_file = generate_milestone(config['folder'], prev_dest, milestone, config['diff_title'])
