@@ -84,6 +84,33 @@
                 "M7-snippet6.py"
             ],
             "subtitle": "Tính thời gian trả lời và cho điểm thưởng nếu trả lời nhanh."
+        },
+        {
+            "name": "M8-LàmQuenVớiGiaoDiệnTurtle.py",
+            "snippets": [
+                "M8-snippet1.py",
+                "M8-snippet2.py",
+                "M8-snippet3.py"
+            ],
+            "subtitle": "Làm quen với giao diện Turtle bằng cách in câu hỏi ra màn hình và chờ người chơi nhập câu trả lời."
+        },
+        {
+            "name": "M9-ThiếtLậpMànHìnhTurtle.py",
+            "snippets": [
+                "M9-snippet1.py",
+                "M9-snippet2.py",
+                "M9-snippet3.py"
+            ],
+            "subtitle": "Thiết lập màn hình: kích thước, tiêu đề cửa sổ, ảnh nền."
+        },
+        {
+            "name": "M9-ViếtĐiểmSố.py",
+            "snippets": [
+                "M10-snippet1.py",
+                "M10-snippet2.py",
+                "M10-snippet3.py"
+            ],
+            "subtitle": "Viết điểm số ra màn hình."
         }
     ],
     "files_to_copy": [
@@ -100,7 +127,8 @@
         "q5.txt",
         "a5.txt",
         "q6.txt",
-        "a6.txt"
+        "a6.txt",
+        "background.gif"
     ],
     "diff_title": "CS101 - Bài Học Final Project - Cột mốc %s"    
 }
