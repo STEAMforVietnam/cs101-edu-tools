@@ -104,13 +104,34 @@
             "subtitle": "Thiết lập màn hình: kích thước, tiêu đề cửa sổ, ảnh nền."
         },
         {
-            "name": "M9-ViếtĐiểmSố.py",
+            "name": "M10-ViếtĐiểmSố.py",
             "snippets": [
                 "M10-snippet1.py",
                 "M10-snippet2.py",
                 "M10-snippet3.py"
             ],
             "subtitle": "Viết điểm số ra màn hình."
+        },
+        {
+            "name": "M11-ÂmThanh.py",
+            "snippets": [
+                "M11-snippet1.py",
+                "M11-snippet2.py",
+                "M11-snippet3.py",
+                "M11-snippet4.py"
+            ],
+            "subtitle": "Chơi âm thanh cho biết trả lời đúng và sai."
+        },
+        {
+            "name": "M12-VẽNhânVật.py",
+            "snippets": [
+                "M12-snippet1.py",
+                "M12-snippet2.py",
+                "M12-snippet3.py",
+                "M12-snippet4.py",
+                "M12-snippet5.py"
+            ],
+            "subtitle": "Vẽ nhân vật và biểu hiện khi trả lời đúng/sai."
         }
     ],
     "files_to_copy": [
@@ -128,7 +149,12 @@
         "a5.txt",
         "q6.txt",
         "a6.txt",
-        "background.gif"
+        "background.gif",
+        "correct_answer.wav",
+        "wrong_answer.wav",
+        "KimNguu-normal.gif",
+        "KimNguu-correct.gif",
+        "KimNguu-wrong.gif"
     ],
     "diff_title": "CS101 - Bài Học Final Project - Cột mốc %s"    
 }
